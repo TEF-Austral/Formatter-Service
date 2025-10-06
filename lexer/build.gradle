@@ -1,10 +1,17 @@
-// Lexer
 plugins {
     id 'buildlogic.kotlin-common-conventions'
 }
 
 repositories {
     mavenCentral()
+}
+
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('jar') {
+    enabled = true
 }
 
 dependencies {
@@ -18,7 +25,7 @@ test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(18)
+    jvmToolchain(21)
 }
 
 springBoot {

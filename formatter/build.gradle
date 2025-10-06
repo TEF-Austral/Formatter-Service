@@ -14,13 +14,21 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(18)
+    jvmToolchain(21)
 }
 
 test {
     useJUnitPlatform()
 }
 
+tasks.named('bootJar') {
+    enabled = true
+}
+
+tasks.named('jar') {
+    enabled = false
+}
+
 springBoot {
-    mainClass = 'formatter.FormatterServiceApplication'
+    mainClass = 'formatter.FormatterServiceApplicationKt'
 }

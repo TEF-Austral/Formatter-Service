@@ -11,11 +11,19 @@ dependencies {
     api project(':common')
 }
 
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('jar') {
+    enabled = true
+}
+
 test {
     useJUnitPlatform()
 }
 kotlin {
-    jvmToolchain(18)
+    jvmToolchain(21)
 }
 
 springBoot {
