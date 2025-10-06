@@ -1,5 +1,10 @@
 plugins {
-    id 'groovy-gradle-plugin'
+    id 'buildlogic.kotlin-common-conventions'
+}
+
+allprojects {
+    group = project.property('group')
+    version = project.property('version')
 }
 
 repositories {
