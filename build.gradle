@@ -2,6 +2,13 @@ plugins {
     id 'buildlogic.kotlin-common-conventions'
 }
 
+tasks.named('bootJar') {
+    enabled = false
+}
+tasks.named('jar') {
+    enabled = true
+}
+
 allprojects {
     group = project.property('group')
     version = project.property('version')

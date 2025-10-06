@@ -14,4 +14,4 @@ plugins {
 
 rootProject.name = 'formatter-service'
 
-include('common', 'formatter', 'token')
+include('common', 'formatter', 'token', 'reader', 'lexer')

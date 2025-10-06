@@ -17,3 +17,7 @@ test {
 kotlin {
     jvmToolchain(18)
 }
+
+springBoot {
+    mainClass = 'token.TokenServiceApplication'
+}
