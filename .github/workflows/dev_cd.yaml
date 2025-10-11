@@ -35,4 +35,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/echo:${{ steps.short-sha.outputs.sha }}
+            ghcr.io/tef-austral/echo:${{ steps.short-sha.outputs.sha }}
