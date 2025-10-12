@@ -64,7 +64,7 @@ jobs:
             echo "📥 Pulling latest image..."
             docker pull ghcr.io/tef-austral/echo:latest
 
-            echo "🔄 Restarting containers..."
+            echo "🔄 Restarting containers...."
             docker compose down
             docker compose up -d
 
