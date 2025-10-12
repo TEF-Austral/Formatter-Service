@@ -1,8 +1,8 @@
 name: Build and Deploy to Azure VM
 
 on:
-  push:
-    branches: [ main ]
+  repository_dispatch:
+    types: [ vm-ready ]
   workflow_dispatch:
 
 jobs:
@@ -41,14 +41,8 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
-      - name: Set lowercase image name
-        id: image
-        run: |
-          echo "name=$(echo 'ghcr.io/${{ github.repository_owner }}/echo' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
-
       - name: Deploy to Azure VM
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -64,7 +58,7 @@ jobs:
             echo "📥 Pulling latest image..."
             docker pull ghcr.io/tef-austral/echo:latest
 
-            echo "🔄 Restarting containers...."
+            echo "🔄 Restarting containers..."
             docker compose down
             docker compose up -d
 
