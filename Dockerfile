@@ -1,7 +1,7 @@
 FROM gradle:8.5.0-jdk21-alpine AS build
 COPY  . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle assemble --no-daemon
+RUN gradle bootJar --no-daemon
 
 FROM eclipse-temurin:21-jre-alpine
 EXPOSE 8080
