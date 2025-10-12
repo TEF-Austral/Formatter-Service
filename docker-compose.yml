@@ -1,7 +1,7 @@
 services:
   api:
     container_name: "base-api"
-    image: ghcr.io/tef-austral/echo:latest  # ← Cambio importante
+    image: ghcr.io/tef-austral/echo:latest
     ports:
       - 8000:8080
     env_file:
