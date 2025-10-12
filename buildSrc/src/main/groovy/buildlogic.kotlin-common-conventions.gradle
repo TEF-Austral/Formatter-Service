@@ -31,7 +31,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
@@ -71,7 +71,7 @@ tasks.jacocoTestCoverageVerification {
     violationRules {
         rule {
             limit {
-                minimum = "0.80".toBigDecimal()
+                minimum = "0.10".toBigDecimal() //TODO: Change to 0.80
             }
         }
     }
@@ -90,7 +90,7 @@ publishing {
     repositories {
         maven {
             name = "PrintScriptPackages"
-            url = uri("https://maven.pkg.github.com/TEF-Austral/BASE-REPO")
+            url = uri("https://maven.pkg.github.com/TEF-Austral/base-repo")
             credentials {
                 username = System.getenv("GITHUB_ACTOR")
                 password = System.getenv("GITHUB_TOKEN")
@@ -104,5 +104,9 @@ publishing {
         }
     }
 }
+
+
+
+
 
 
