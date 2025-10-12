@@ -3,7 +3,7 @@ services:
     container_name: "base-api"
     build:
       context: .
-      dockerfile: Dockerfile.multi
+      dockerfile: Dockerfile
     ports:
       - 8000:8080
     env_file:
