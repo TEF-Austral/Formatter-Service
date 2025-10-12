@@ -1,15 +1,13 @@
 services:
   api:
     container_name: "formatter-service-api"
-    build:
-      context: .
-      dockerfile: Dockerfile.multi
+    image: ghcr.io/tef-austral/echo:latest #T0DO CHANGE
     ports:
       - 8001:8080
     env_file:
       - .env
-    environment:
-      DB_HOST: postgres_db_formatter
+    depends_on:
+      - db
 
   db:
     container_name: formatter_db
