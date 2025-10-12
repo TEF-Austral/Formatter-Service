@@ -1,9 +1,7 @@
 services:
   api:
     container_name: "base-api"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/tef-austral/echo:latest  # ← Cambio importante
     ports:
       - 8000:8080
     env_file:

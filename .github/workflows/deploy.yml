@@ -57,21 +57,21 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             cd ~/echo-app
-            
+
             echo "📥 Pulling latest image..."
-            docker pull ${{ steps.image.outputs.name }}:latest
-            
+            docker pull ghcr.io/tef-austral/echo:latest
+
             echo "🔄 Restarting containers..."
             docker compose down
             docker compose up -d
-            
+
             echo "🧹 Cleaning old images..."
             docker image prune -f
-            
+
             echo "📋 Container status:"
             docker compose ps
-            
+
             echo "📝 Recent logs:"
             docker compose logs --tail=30 api
-            
+
             echo "✅ Deployment completed successfully!"
