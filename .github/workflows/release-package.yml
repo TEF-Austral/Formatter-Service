@@ -87,34 +87,11 @@ jobs:
           git tag "v${{ steps.update_version.outputs.new_version }}"
           git push origin "v${{ steps.update_version.outputs.new_version }}"
 
-      - name: Checkout updated version
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          token: ${{ secrets.GH_TOKEN }}
-
-      - name: Grant execute permission again
-        run: chmod +x ./gradlew
-
-      - name: Clean Gradle cache
-        run: |
-          rm -rf ~/.gradle/caches/
-          rm -rf .gradle/
-          ./gradlew clean --no-daemon
-
-      - name: Verify version
-        run: |
-          echo "Version in gradle.properties:"
-          grep "^version=" gradle.properties
-          echo "Version to be published: ${{ steps.update_version.outputs.new_version }}"
-
       - name: Build with Gradle
-        run: ./gradlew build -Pversion=${{ steps.update_version.outputs.new_version }} --no-daemon --no-configuration-cache
+        run: ./gradlew build --no-daemon
 
       - name: Publish package
-        run: |
-          echo "Publishing version ${{ steps.update_version.outputs.new_version }}"
-          ./gradlew publish -Pversion=${{ steps.update_version.outputs.new_version }} --no-daemon --no-configuration-cache --stacktrace --info
+        run: ./gradlew publish --no-daemon --stacktrace --info
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
