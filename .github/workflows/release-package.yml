@@ -87,8 +87,17 @@ jobs:
           git tag "v${{ steps.update_version.outputs.new_version }}"
           git push origin "v${{ steps.update_version.outputs.new_version }}"
 
+      - name: Checkout updated version
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Grant execute permission again
+        run: chmod +x ./gradlew
+
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+        run: ./gradlew clean build --no-daemon
 
       - name: Publish package
         run: ./gradlew publish --no-daemon --stacktrace --info
