@@ -96,11 +96,25 @@ jobs:
       - name: Grant execute permission again
         run: chmod +x ./gradlew
 
+      - name: Clean Gradle cache
+        run: |
+          rm -rf ~/.gradle/caches/
+          rm -rf .gradle/
+          ./gradlew clean --no-daemon
+
+      - name: Verify version
+        run: |
+          echo "Version in gradle.properties:"
+          grep "^version=" gradle.properties
+          echo "Version to be published: ${{ steps.update_version.outputs.new_version }}"
+
       - name: Build with Gradle
-        run: ./gradlew clean build --no-daemon
+        run: ./gradlew build -Pversion=${{ steps.update_version.outputs.new_version }} --no-daemon --no-configuration-cache
 
       - name: Publish package
-        run: ./gradlew publish --no-daemon --stacktrace --info
+        run: |
+          echo "Publishing version ${{ steps.update_version.outputs.new_version }}"
+          ./gradlew publish -Pversion=${{ steps.update_version.outputs.new_version }} --no-daemon --no-configuration-cache --stacktrace --info
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
