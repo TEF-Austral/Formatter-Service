@@ -32,21 +32,6 @@ jobs:
       - name: Grant execute permission
         run: chmod +x ./gradlew
 
-      # 🆕 AUTO-FORMATEAR CÓDIGO ANTES DE TODO
-      - name: Format code with ktlint
-        run: ./gradlew ktlintFormat --no-daemon
-
-      # 🆕 COMMIT CAMBIOS DE FORMATO SI EXISTEN
-      - name: Commit formatting changes
-        run: |
-          if [[ -n $(git status -s) ]]; then
-            git add .
-            git commit -m "style: auto-format code with ktlint [skip ci]"
-            git push
-          else
-            echo "No formatting changes needed"
-          fi
-
       - name: Determine version bump
         id: version
         run: |
