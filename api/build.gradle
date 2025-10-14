@@ -28,3 +28,7 @@ test {
 kotlin {
     jvmToolchain(21)
 }
+
+springBoot {
+    mainClass = 'api.ExampleServiceApplicationKt'
+}

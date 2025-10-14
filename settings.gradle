@@ -14,4 +14,4 @@ plugins {
 
 rootProject.name = 'base-repo'
 
-include('module')
+include('api')
