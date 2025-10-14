@@ -31,7 +31,7 @@ jobs:
 
       - name: Grant execute permission
         run: chmod +x ./gradlew
-
+        
       - name: Determine version bump
         id: version
         run: |

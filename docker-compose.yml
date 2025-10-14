@@ -1,22 +1,24 @@
 services:
   api:
-    container_name: "base-api"
+
+    container_name: "formatter-service-api"
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/tef-austral/base-api:latest
+    image: ghcr.io/tef-austral/formatter-api:latest
+    
     ports:
-      - 8000:8080
+      - 8001:8080
     env_file:
       - .env
     depends_on:
       - db
 
   db:
-    container_name: base_db
+    container_name: formatter_db
     image: postgres:16
     ports:
-      - 5432:5432
+      - 5433:5432
     env_file:
       - .env
     volumes:
