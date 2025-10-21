@@ -1,7 +1,10 @@
 services:
   api:
     container_name: "formatter-service-api"
-    image: ghcr.io/tef-austral/echo:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: ghcr.io/tef-austral/formatter-api:latest
     ports:
       - 8001:8080
     env_file:
